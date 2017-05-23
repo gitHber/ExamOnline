@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.likun.dao.QuestionDao">
+	<!--得到所有试题 -->
+	<select id="getAllQuestion" resultType="Question">
+		select * from question
+	</select>
+	<!-- 根据试题id删除试题 -->
+	<delete id="deleteQuestionById" parameterType="int">
+		delete from
+		question where id=#{id}
+	</delete>
+	<!-- 更新试题 -->
+	<update id="updateQuestionById" parameterType="Question">
+		update question
+		set
+		courseId=#{courseId},content=#{content},option1=#{option1},option2=#{option2}
+		,option3=#{option3},option4=#{option4},answer=#{answer},chapter=#{chapter},type=#{type},
+		diff=#{diff},courseId=#{courseId} where id=#{id}
+	</update>
+	<!-- 插入试题 -->
+	<insert id="addQuestion" parameterType="Question">
+		INSERT INTO question (
+		courseId,
+		content,
+		option1,
+		option2,
+		option3,
+		option4,
+		answer,
+		chapter,
+		type,
+		diff
+		)
+		VALUES
+		(#{courseId},#{content},#{option1},#{option2},#{option3},#{option4},#{answer},#{chapter},#{type},#{diff})
+	</insert>
+	<!-- 根据试题id得到试题 -->
+	<select id="getQuestionById" parameterType="int" resultType="Question">
+		select * from question where id=#{id}
+	</select>
+	<!-- 根据条件查询要显示的数据 (分页) -->
+	<select id="searchQuestion" parameterType="map" resultType="Question">
+		select * from question
+		<where>
+			<foreach collection="aa.keys" index="key" item="item"
+				separator="and">
+				<if test="item!='pageSize' and item!='pageIndex'">
+					${item}=#{aa[${item}]}
+				</if>
+			</foreach>
+		</where>
+		limit #{aa[pageIndex]},#{aa[pageSize]}
+	</select>
+	<!-- 符合条件的数据一共有多少条 -->
+	<select id="searchCount" resultType="int" parameterType="map">
+		select count(*) from question
+		<where>
+			<foreach collection="aa.keys" index="index" item="item"
+				separator="and">
+				${item}=#{aa[${item}]}
+			</foreach>
+		</where>
+	</select>
+	<!-- 根据试卷id与试题类型查找到相应试题 -->
+	<select id="getQuestionsByPageIdAndQuestionType" resultType="Question"
+		parameterType="map">
+		select * from question where id in(select questionId
+		from page_question
+		where pageId=#{pageId}) and type=#{questionType}
+	</select>
+	<!-- 获取需要的试题（用于添加到试卷） -->
+	<select id="getQuestionNeedToAdd" parameterType="map"
+		resultType="Question">
+		select * from
+		question where diff=#{diff} and
+		type=#{questionType} and chapter between #{chapter_start} and
+		#{chapter_end} and
+		courseId=#{courseId}
+		<if test="pageId!=null">
+		and question.id not IN (SELECT
+		questionId FROM page_question where pageId=#{pageId})
+		</if>
+		<if test="itemIndex!=null&amp;&amp;pageSize!=null">
+		       limit #{itemIndex},#{pageSize}
+		</if>
+	</select>
+	<!-- 获取需要的试题数量（用于添加到试卷） -->
+	<select id="getQuestionCountNeedToAdd" parameterType="map"
+		resultType="int">
+		select count(*) from
+		question where diff=#{diff} and
+		type=#{questionType} and chapter between #{chapter_start} and
+		#{chapter_end} and
+		courseId=#{courseId} 
+		<if test="pageId!=null">
+		and question.id not IN (SELECT
+		questionId FROM page_question where pageId=#{pageId})
+		</if>
+	</select>
+</mapper>

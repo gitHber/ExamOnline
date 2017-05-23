@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>首页</title>
+<link rel="stylesheet" href="../css/index.css" type="text/css" />
+<script src="../js/tools/jquery-3.2.1.min.js"></script>
+<script src="../js/tools/tools.js"></script>
+<link rel="stylesheet" href="../css/ExamPractice.css">
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- 可选的Bootstrap主题文件（一般不使用） -->
+<script src="../bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="../js/index.js"></script>
+<!-- cropit裁剪图片插件 -->
+<script src="../cropit/dist/jquery.cropit.js"></script>
+</head>
+<body>
+	<div class="container">
+		<!--头信息-->
+		<div class="row clearfix" style="background: #4D4D4D;">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="row clearfix">
+							<div class="col-md-12 column info">
+								<strong>当前用户：</strong> <a href="MyInfo.html" target="lemon"
+									class="name">李坤</a> <a href="#">短消息(<span>0</span>)
+								</a> <a href="#">公告(<span>0</span>)
+								</a> <a href="#">修改密码</a> <a href="/ExamOnline/loginOut.do?role=student">注销</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索框 导航之类 -->
+		<div class="row clearfix header">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="row clearfix">
+							<div class="col-md-12 column">
+								<div class="col-lg-3">
+									<a href="index.html"><img src="../img/logo_exam.png" /></a>
+									<!-- 搜索框 -->
+
+									<div class="input-group input-group-sm">
+										<div class="input-group-btn">
+											<button type="button" class="btn btn-default dropdown-toggle"
+												data-toggle="dropdown">
+												<span>考试</span> <span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu" style="">
+												<li><a href="javascript:void()">考试</a></li>
+												<li><a href="javascript:void()">练习</a></li>
+											</ul>
+										</div>
+										<!-- /btn-group -->
+										<input type="text" class="form-control" placeholder="请输入内容" />
+										<span class="input-group-btn">
+											<button id="search" class="btn btn-default" type="button">
+												<span class="glyphicon glyphicon-search"></span>
+											</button>
+										</span>
+									</div>
+									<!-- 标签 -->
+									<ul class="nav nav-tabs label">
+										<li class="active"><a href="#">首页</a></li>
+										<li><a href="#">练习</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<!-- 公告 -->
+				<div class="row clearfix announcement">
+					<div class="col-md-12 column">
+						<span class="glyphicon glyphicon-comment"
+							style="color: #8A6D3B; font-size: 14px;" /> <strong
+							style="color: #976D3B;">公告：</strong><a href="">首页置顶公告</a>
+					</div>
+				</div>
+				<br>
+				<div class="row clearfix">
+					<!-- 个人信息 -->
+					<div class="col-md-3 column personal">
+						<div class="row clearfix">
+							<div class="col-md-12 column">
+								<br> <a data-toggle="modal" data-target="#myModal"><img
+									src="../img/h_userhead.jpg" alt="图片丢了"
+									style="width: 45px; height: 60px;" id="headImg"></a> <strong
+									class="name">齐天大圣</strong>
+								<hr>
+								<ul class="list-group">
+									<li class="list-group-item"><span
+										class="glyphicon glyphicon-file" style="color: #2B79AD" />考试测评</li>
+									<li class="list-group-item"><a href="javascript:void()"
+										id="new"> 参加练习</a></li>
+								</ul>
+								<dl>
+									<dt>
+										<strong style="color: #2B79AD;">最新公告</strong>
+									</dt>
+									<br>
+									<dd>
+										<a href="">关于2016年开学补考（具体考试科目考试时间与考试地点）</a><br> <span>2016-10-11</span>
+									</dd>
+									<br>
+									<dd>
+										<a href="">关于2016年开学补考（具体考试科目考试时间与考试地点）</a><br> <span>2016-10-11</span>
+									</dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+					<!-- 考试信息 -->
+					<div class="col-md-9 column">
+						<ul id="myTab" class="nav nav-tabs">
+							<li class="active"><a href="#myExam" data-toggle="tab">
+									我的考试 </a></li>
+							<li><a href="#myScore" data-toggle="tab">我的成绩</a></li>
+						</ul>
+						<div id="myTabContent" class="tab-content">
+							<div class="tab-pane fade in active" id="myExam">
+								<table class="table table-hover">
+									<tbody>
+										<tr class="examInfo">
+											<td>
+												<div class="row clearfix">
+													<div class="col-md-8 column">
+														<span class="glyphicon glyphicon-file" /><b
+															class="examName">期中考试</b> <b class="examId" hidden></b>
+															<hr>
+														
+														<ul>
+															<li class="time"><span class="examAttr">考试时间:</span><span
+																class="examTime"> 2016-01-27 14:21</span></li>
+															<br>
+															<li class="class"><span class="examAttr">考试班级:</span><span
+																class="grade">1307064139</span></li>
+														</ul>
+													</div>
+													<div class="col-md-4 column">
+													<button type="button" class="btn btn-primary startExam">参加考试</button>
+													</div>
+												</div>
+												
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<ul class="pagination" style="margin-left: 30%">
+									<li><a href="javascript:void()" id="firstPage">首页</a></li>
+									<li><a href="javascript:void()" id="beforPage">&lt;</a></li>
+									<li class="active"><a href="#">1</a></li>
+									<li><a href="javascript:void()" id="nextPage">&gt;</a></li>
+									<li><a href="javascript:void()" id="lastPage">尾页</a></li>
+									<li><input type="number" value=1
+										style="width: 40px; float: left;" id="pageNum" /></li>
+									<li><button class="btn btn-primary btn-sm" id="turn">跳转</button></li>
+									<li>总页数:<b id="pageCount"></b></li>
+									<li>共<b id="itemCount"></b>条
+									</li>
+								</ul>
+							</div>
+							<div class="tab-pane fade" id="myScore">
+								<table class="table table-hover">
+									<tbody>
+										<tr class="scoreInfo">
+											<td>
+												<div class="row clearfix">
+													<div class="col-md-8 column">
+														<span class="glyphicon glyphicon-file" /><b
+															class="examName">期中考试</b>
+															<hr>
+														<ul>
+															<li class="time"><span class="examAttr">考试时间:</span><span>
+																	2016-01-27 14:21 </span></li>
+															<br>
+															<li class="class"><span class="examAttr">考试班级:</span><span>1307064139</span></li>
+														</ul>
+													</div>
+													<div class="col-md-4 column">
+														<h3>
+															你的成绩： <span class="label label-default" id="score">69</span>
+														</h3>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<ul class="pagination" style="margin-left: 30%">
+									<li><a href="javascript:void()" id="firstPage1">首页</a></li>
+									<li><a href="javascript:void()" id="beforPage1">&lt;</a></li>
+									<li class="active"><a href="#">1</a></li>
+									<li><a href="javascript:void()" id="nextPage1">&gt;</a></li>
+									<li><a href="javascript:void()" id="lastPage1">尾页</a></li>
+									<li><input type="number" value=1
+										style="width: 40px; float: left;" id="pageNum1" /></li>
+									<li><button class="btn btn-primary btn-sm" id="turn1">跳转</button></li>
+									<li>总页数:<b id="pageCount1"></b></li>
+									<li>共<b id="itemCount1"></b>条
+									</li>
+								</ul>
+							</div>
+
+						</div>
+
+						<!-- <iframe name="lemon" id='iframe' frameborder='0' scrolling="no" width="100%" src="ExamPractice.html"></iframe> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">上传头像</h4>
+					<span class="label label-info">google浏览器会出现卡顿的现象，稍等片刻即可！</span>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+
+						<div class="image-editor">
+							<div class="row">
+								<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<div class="cropit-preview"></div>
+								</div>
+								<div class="col-md-2">
+									<div class="image-size-label">
+										<h5>放大图片</h5>
+									</div>
+									<input type="range" class="cropit-image-zoom-input">
+									<button type="button" class="rotate-ccw btn btn-success">逆时针</button>
+									<br>
+									<button type="button" class="rotate-cw btn btn-info">顺时针</button>
+								</div>
+								<div class="col-md-4"></div>
+							</div>
+							<div class="row">
+								<div class="col-md-1"></div>
+								<div class="col-md-3">
+									<input type="file" class="cropit-image-input">
+								</div>
+								<div class="col-md-4">
+									<button type="button" class="export btn btn-danger btn-lg">上传图片</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary">提交更改</button>
+			</div> -->
+			</div>
+		</div>
+	</div>
+	<script>
+		$(function() {
+			$('.image-editor').cropit({
+				imageState : {
+					src : 'http://lorempixel.com/500/400/',
+				},
+			});
+
+			$('.rotate-cw').click(function() {
+				$('.image-editor').cropit('rotateCW');
+			});
+			$('.rotate-ccw').click(function() {
+				$('.image-editor').cropit('rotateCCW');
+			});
+
+			$('.export').click(function() {
+				var imageData = $('.image-editor').cropit('export');
+				$("#headImg").attr('src', imageData);
+				$('#myModal').modal('hide')
+			});
+		});
+	</script>
+	<style>
+.cropit-preview {
+	background-color: #f8f8f8;
+	background-size: cover;
+	border: 5px solid #ccc;
+	border-radius: 3px;
+	margin-top: 7px;
+	width: 150px;
+	height: 200px;
+}
+
+.cropit-preview-image-container {
+	cursor: move;
+}
+
+.image-size-label {
+	margin-top: 10px;
+}
+
+input, .export {
+	display: block;
+}
+
+button {
+	margin-top: 10px;
+}
+</style>
+	<!-- 练习属性 -->
+	<div class="modal fade" id="newPractice" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">练习</h4>
+				</div>
+				<div class="modal-body">
+					<form action="javascript:void()" id="newPracticeInfo">
+						<table class="table table-striped">
+							<tbody>
+								<tr>
+									<td>课程</td>
+									<td><select class="input-sm" name='courseId'>
+
+									</select></td>
+								</tr>
+								<tr>
+									<td>难度</td>
+									<td><select class="input-sm" name="diff">
+											<option value="1">简单</option>
+											<option value="2">一般</option>
+											<option value="3">困难</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td>章节</td>
+									<td><select class="input-sm" name="chapter_start">
+											<option value="1">第一章</option>
+											<option value="2">第二章</option>
+											<option value="3">第三章</option>
+											<option value="4">第四章</option>
+											<option value="5">第五章</option>
+											<option value="6">第六章</option>
+									</select> -- <select class="input-sm" name="chapter_end">
+											<option value="1">第一章</option>
+											<option value="2">第二章</option>
+											<option value="3">第三章</option>
+											<option value="4">第四章</option>
+											<option value="5">第五章</option>
+											<option value="6">第六章</option>
+									</select></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="submit">提交</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!-- 练习组成 -->
+	<div class="modal fade" id="construct" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">试卷信息</h4>
+				</div>
+				<div class="modal-body">
+					<form action="javascript:void()" id="newPracticeQuestionInfo">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>试题类型</th>
+									<th>数量</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td id="type">单选题</td>
+									<td class="num"><input type="number" max="50" min="0"
+										name="singleNum"></td>
+								</tr>
+								<tr>
+									<td id="type">多选题</td>
+									<td class="num"><input type="number" max="50" min="0"
+										name="multipleNum"></td>
+								</tr>
+								<tr>
+									<td id="type">填空题</td>
+									<td class="num"><input type="number" max="50" min="0"
+										name="blankNum"></td>
+								</tr>
+								<tr>
+									<td id="type">简答题</td>
+									<td class="num"><input type="number" max="50" min="0"
+										name="subjectiveNum"></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="submit2">提交</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+</body>
+</html>

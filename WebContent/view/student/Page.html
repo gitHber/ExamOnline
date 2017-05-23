@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>试卷</title>
+	<script src="../js/tools/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="../css/Page.css" type="text/css">
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- 可选的Bootstrap主题文件（一般不使用） -->
+	<script src="../bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
+	
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<script src="../js/tools/tools.js"></script>
+	<script src="../js/Page.js"></script>
+</head>
+<style>
+	/* Custom Styles */
+	ul.nav-tabs{
+		width: 140px;
+		margin-top: 20px;
+		border-radius: 4px;
+		border: 1px solid #ddd;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+	}
+	ul.nav-tabs li{
+		margin: 0;
+		border-top: 1px solid #ddd;
+	}
+	ul.nav-tabs li:first-child{
+		border-top: none;
+	}
+	ul.nav-tabs li a{
+		margin: 0;
+		padding: 8px 16px;
+		border-radius: 0;
+	}
+	ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover{
+		color: #fff;
+		background: #0088cc;
+		border: 1px solid #0088cc;
+	}
+	ul.nav-tabs li:first-child a{
+		border-radius: 4px 4px 0 0;
+	}
+	ul.nav-tabs li:last-child a{
+		border-radius: 0 0 4px 4px;
+	}
+	ul.nav-tabs.affix{
+		top: 200px; /* Set the top position of pinned element */
+	}
+	.panel-group{
+		width: 170px;
+		margin-top: 20px;
+		border-radius: 4px;
+		border: 1px solid #ddd;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+	}
+</style>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy">
+	<div class="container">
+		<div class="jumbotron" style="background: #2B579A;color: white;">
+			<h1 style="text-align: center;">期中考试</h1>
+		</div>
+		<div class="row">
+			<div class="col-xs-2" id="myScrollspy">
+
+				<div class="panel-group" id="accordion" data-spy="affix" data-offset-top="0">
+					<div class="panel panel-default" style="color: red;">
+						倒计时：<b id="hour">00</b>:<b id="min">02</b>:<b id="sec">00</b>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" 
+								href="#collapseOne">
+								单选题
+							</a>
+							<a href="#single"><span class="badge pull-right">></span></a>
+						</h4>
+					</div>
+				</div>
+				<div id="collapseOne" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<ul class="nav nav-tabs nav-stacked"  data-offset-top="125">
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" 
+							href="#collapseTwo">
+							多选题
+						</a>
+						<a href="#multiple"><span class="badge pull-right">></span></a>
+					</h4>
+				</div>
+			</div>
+			<div id="collapseTwo" class="panel-collapse collapse">
+				<div class="panel-body">
+					<ul class="nav nav-tabs nav-stacked"  data-offset-top="125">
+
+					</ul>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" 
+						href="#collapseThree">
+						填空题
+					</a>
+					<a href="#blank"><span class="badge pull-right">></span></a>
+				</h4>
+			</div>
+		</div>
+		<div id="collapseThree" class="panel-collapse collapse">
+			<div class="panel-body">
+				<ul class="nav nav-tabs nav-stacked"  data-offset-top="125">
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" 
+					href="#collapseFour">
+					主观题
+				</a>
+				<a href="#subjective"><span class="badge pull-right">></span></a>
+			</h4>
+		</div>
+	</div>
+	<div id="collapseFour" class="panel-collapse collapse">
+		<div class="panel-body">
+			<ul class="nav nav-tabs nav-stacked"  data-offset-top="125">
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+<div class="col-xs-10">
+	<form action="javascript:void()" id="questions">
+		<div class="singleQuestions">
+			<h3 id="single">一、单选题</h3>
+			<!-- 题目 -->
+			<div class="single">
+				<h4 id="single-1">1.按照Java的标识符命名规范，下列表示一个类的标识符正确的是</h4>
+				<div class="radio">
+					<label>
+						<input type="radio" name="single1" value="A" checked><font class="option1"></font>
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input type="radio" name="single1" value="B" checked><font class="option2"></font>
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input type="radio" name="single1" value="C" checked><font class="option3"></font>
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input type="radio" name="single1"  value="D" checked><font class="option4"></font>
+					</label>
+				</div>
+				<hr>
+			</div>
+		</div>
+		<div class="multipleQuestions">
+			<h3 id="multiple">二、多选题</h3>
+			<!-- 题目 -->
+			<div class="multiple">
+				<h4 id="multiple-1">1.以下关于序列的说法哪两项是对的</h4>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="A" name=""><font class="option1"></font>
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="B" name="">
+						<font class="option2"></font>
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="C" name="">
+						<font class="option3"></font>
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="D" name="">
+						<font class="option4"></font>
+					</label>
+				</div>
+				<hr>
+			</div>
+		</div>
+		<div class="blankQuestions">
+			<h3 id="blank">三、填空题</h3>
+			<!-- 题目 -->
+			<div class="blank">
+				<h5 id="blank-1">1、事务的特点：</h5><input type="text">,<input type="text">,<input type="text">,<input type="text">;
+				<hr>
+			</div>
+		</div>
+		<div class="subjectiveQuestions">
+			<h3 id="subjective">四、主观题</h3>
+			<!-- 题目 -->
+			<div class="subjective">
+				<h5 id="subjective-1">1、请写出快排算法</h5>
+				<div class="form-group">
+					<textarea class="form-control" rows="10"></textarea>
+				</div>
+				<hr>
+			</div>
+		</div>
+
+		<button type="button" class="btn btn-primary btn-lg btn-block" id="submit">交卷</button>
+		<br>
+	</form>
+</div>
+</div>
+</div>
+<!-- 加载中 -->
+<div id="hidebg">
+</div>
+<div class="main" style="display: none;">
+		<div class="loading">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+</body>
+</html>

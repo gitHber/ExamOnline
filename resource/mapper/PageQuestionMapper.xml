@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.likun.dao.PageQuestionDao">
+	<insert id="insertQuestionToPage" parameterType="PageQuestion">
+		insert into
+		page_question VALUES(#{pageId},#{questionId})
+	</insert>
+	<!-- 删除指定试卷试题 -->
+	<delete id="deleteQuestionFromPage" parameterType="PageQuestion">
+		delete from
+		page_question where pageId=#{pageId} and questionId=#{questionId}
+	</delete>
+	<!-- 删除试卷所有试题 -->
+	<delete id="deletePageQuestion" parameterType="int">
+		delete from page_question where pageId=#{id}
+	</delete>
+</mapper>

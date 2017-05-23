@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>管理员首页</title>
+	<link rel="stylesheet" href="../css/teacher/index.css" type="text/css" />
+	<script src="../js/tools/jquery-3.2.1.min.js"></script>
+
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- 可选的Bootstrap主题文件（一般不使用） -->
+	<script src="../bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
+	
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="../js/manager/index.js"></script>
+</head>
+<body>
+	<div class="container">
+		<!--头信息-->
+		<div class="row clearfix" style="background: #4D4D4D;">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="row clearfix">
+							<div class="col-md-12 column info">
+								<strong>当前用户：</strong>
+								<a href="MyInfo.html" class="name"></a>
+								<a href="#">修改密码</a>
+								<a href="/ExamOnline/loginOut.do?role=student">注销</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索框 导航之类 -->
+		<div class="row clearfix header">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="row clearfix">
+							<div class="col-md-12 column">
+								<div class="col-lg-3">
+									<a href="index.html"><img src="../img/logo_exam.png"/></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<!-- 公告 -->
+				<div class="row clearfix announcement">
+					<div class="col-md-12 column">
+						<span class="glyphicon glyphicon-comment" style="color: #8A6D3B; font-size: 14px;"/>　<strong style="color:#976D3B;">公告：</strong><a href="">首页置顶公告</a>
+					</div>
+				</div>
+				<br>
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						
+						<table class="table" style="background: white;">
+							<tbody>
+								<tr>
+									<td>
+										<h1>用户管理
+											<small>相关功能</small>
+										</h1>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<a href="userManage.html">用户管理</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h1>考试监控
+											<small>相关功能</small>
+										</h1>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<a href="spyExam.html">考试监控</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>试题</title>
+	<script src="../js/tools/jquery-3.2.1.min.js"></script>
+
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- 可选的Bootstrap主题文件（一般不使用） -->
+	<link href="../bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet">
+	
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../css/teacher/index.css" type="text/css" />
+	<link rel="stylesheet" href="../css/teacher/Question.css" type="text/css" />
+	<script src="../js/tools/tools.js"></script>
+	<script type="text/javascript" src="../js/teacher/Question.js"></script>
+</head>
+<body>
+	<div class="container">
+		<!--头信息-->
+		<div class="row clearfix" style="background: #4D4D4D;">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="row clearfix">
+							<div class="col-md-12 column info">
+								<strong>当前用户：</strong>
+								<a href="MyInfo.html" target="lemon" class="name">李坤</a>
+								<a href="#">短消息(<span>0</span>)</a>
+								<a href="#">公告(<span>0</span>)</a>
+								<a href="#">修改密码</a>
+								<a href="#">注销</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索框 导航之类 -->
+		<div class="row clearfix header">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="row clearfix">
+							<div class="col-md-12 column">
+								<div class="col-lg-3">
+									<a href="index.html"><img src="../img/logo_exam.png"/></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<!-- 公告 -->
+				<div class="row clearfix announcement">
+					<div class="col-md-12 column">
+						<span class="glyphicon glyphicon-comment" style="color: #8A6D3B; font-size: 14px;"/>　<strong style="color:#976D3B;">公告：</strong><a href="">首页置顶公告</a>
+					</div>
+				</div>
+				<br>
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<form action="javascript:void()" id="searchCondition">
+							<!-- 搜索条件 -->
+							<table>
+								<font style="font-size: 2em;">试题检索</font>|
+								<tr>
+									<td><label for="">类型：</label></td>
+									<td>
+										<select name="type" class="form-control input-sm">
+											<option value="">请选择</option>
+										</select>
+									</td>
+									<td>　　　　</td>
+									<td><label for="">难度：</label></td>
+									<td>
+										<select name="diff" class="form-control  input-sm"">
+											<option value="">请选择</option>
+											<option value=1>简单</option>
+											<option value=2>一般</option>
+											<option value=3>困难</option>
+										</select>
+									</td>
+									<td>　　　　</td>
+									<td><label for="">课程：</label></td>
+									<td>
+										<select name="courseId" class="form-control  input-sm">
+											<option value="">请选择</option>
+										</select>
+									</td>
+									<td>　　　　</td>
+									<td><button class="btn btn-primary btn-sm" id="search">检索</button></td>
+									<td>　　　　</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+					<div class="col-md-12 column">
+						<table class="table table-hover" id="questiontable">
+							<font style="font-size: 2em;">试题</font>|
+							<!-- 按钮触发模态框 -->
+							<button class="btn btn-primary btn-sm" id="new">新增试题</button>
+							<thead>
+								<tr>
+									<th>编号</th>
+									<th>试题标题</th>
+									<th>试题类型</th>
+									<th>试题难度</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="question">
+									<td class="id">1</td>
+									<td class="content">下面哪项是正确的？</td>
+									<td class="type">单选题</td>
+									<td class="diff">简单</td>
+									<td><button type="button" class="btn btn-info btn-sm update">修改</button><button type="button" class="btn btn-danger btn-sm delete">删除</button></td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="pagination" style="margin-left: 30%">
+							<li><a href="javascript:void()" id="firstPage">首页</a></li>
+							<li><a href="javascript:void()" id="beforPage">&lt;</a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="javascript:void()" id="nextPage">&gt;</a></li>
+							<li><a href="javascript:void()" id="lastPage">尾页</a></li>
+							<li><input type="number" value=1 style="width: 40px;" id="pageNum"></li>
+							<li><button class="btn btn-primary btn-sm" id="turn">跳转</button></li>
+							<li>总页数:<b id="pageCount"></b></li>
+							<li>共<b id="itemCount"></b>条</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 显示题目信息 -->
+	<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">预览试题</h4>
+				</div>
+				<div class="modal-body">
+					<!-- 单选题 -->
+					<div id="single" style="display: none">
+						<h4>1.按照Java的标识符命名规范，下列表示一个类的标识符正确的是</h4>
+						<div class="radio">
+							<label>
+								<input type="radio" name="single" value="A" disabled><b class="option1">A、Helloman</b>
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="single" value="B" disabled><b class="option2">B、HelloMan</b>
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="single" value="C" disabled><b class="option3">C、helloman</b>
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="single" value="D" disabled><b class="option4">D、helloMan</b>
+							</label>
+						</div>
+						<hr>
+					</div>
+					<!-- 多选题 -->
+					<div style="display: none" id="multiple">
+						<h4>1.以下关于序列的说法哪两项是对的</h4>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" value="" disabled>
+								<b class="option1">A.使用NEXTVAL伪列去查看序列的下一个可能的序列值，不会真实地提取这个值
+								</b>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" value="" disabled>
+								<b class="option2">
+								B.使用CURRVAL伪列去查看序列的当前值，不影响序列产生下一个值
+								</b>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" value="" disabled>
+								<b class="option3">
+								C.使用NEXTVAL伪列去获取序列的下一个值时，会从序列中真正地提取它的值
+								</b>
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" value="" disabled>
+								<b class="option4">
+								D.使用CURRVAL伪列从序列中获取值，并用于某一个列上
+								</b>
+							</label>
+						</div>
+						<hr>
+					</div>
+					<!-- 填空题 -->
+					<div class="blank" style="display: none" id="blank">
+						<h4>1、事务的特点：</h4>
+					</div>
+					<!-- 主观题 -->
+					<div class="subjective" style="display: none" id="subjective">
+						<h4 id="subjective-1">1、请写出快排算法</h4>
+						<div class="form-group">
+							<textarea class="form-control" rows="10" readonly="true"></textarea>
+						</div>
+						<hr>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
+</body>
+</html>

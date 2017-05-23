@@ -1,0 +1,29 @@
+body{
+    background-image: url(../img/bg_line.png);
+    background-repeat: repeat;
+}
+font{
+    position: absolute;
+    display: none;
+    top: 200px;
+    margin-left:70px;
+    color:red;
+}
+.login{
+    float: none;  
+    display: block;  
+    margin-left: auto;  
+    margin-top: 150px;
+    margin-bottom: 180px;
+    margin-right: auto;
+    border:1px solid gray;
+    border-radius: 10px;
+    width: 790px;
+    height: 265px;
+    background-image: url(../img/loginbg_stu.png);
+}   
+.login-form{
+    margin: 20px 100px 100px 400px;
+    width: 400px;
+    height: 250px;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="../js/tools/jquery-3.2.1.min.js"></script>
+
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- 可选的Bootstrap主题文件（一般不使用） -->
+	<script src="../bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
+	
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	
+	<title>考试信息</title>
+	<script src="../js/tools/tools.js"></script>
+	<script src="../js/examInfo.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="page-header">
+					<h1 style="text-align: center;" id="name"></h1>
+				</div>
+				<table style="margin:0 auto;">
+					<tr>
+						<td>考试时间：</td><td id="time"></td>
+						<td>　　　　　</td>
+						<td>考试类型：</td><td id="page_type"></td>
+						<td>　　　　　</td>
+						<td>总分：</td><td id="total_cent"></td>
+					</tr>
+					<tr>
+						<td>限时：</td><td id="ans_time"></td>
+						<td>　　　　　</td>
+						<td>考试班级：</td><td id="grade">13070641</td>
+					</tr>
+
+				</table>
+
+			</div>      
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title" style="padding-left: 500px;">
+							<a data-toggle="collapse" data-parent="#accordion" 
+							href="#collapseOne"   style="color: red;">
+							考试须知
+						</a>
+					</h4>
+				</div>
+				<div id="collapseOne" class="panel-collapse collapse in">
+					<div class="panel-body">►考生的照片、注册号、姓名和生日将显示在所分配考位的计算机显示器上，考生应核对显示器上的信息是否正确。<br>►考生须服从考务人员的指令，有问题须举手示意等待考务人员前来解决。<br>►允许考生在考试进行中做笔记。考场将发给每位考生两只铅笔和三张专用草稿纸。考试完毕后考生须在退场前将铅笔和草稿纸如数退还。<br>►考试计时由计算机系统控制并显示在显示屏上。耳机的音量由考生在计算机上通过鼠标调整。<br>►考生在考试时，不得擅自触摸和拔插计算机其他部件。因考生非正常使用而导致计算机及耳机损坏，由考生负责赔偿。<br>►如遇计算机系统故障或死机，请考生不要紧张，立即举手示意考务人员帮助重新启动考试系统。停机期间考试的计时停止。重新启动后系统将从停止时刻开始。<br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<button type="button" class="btn btn-primary btn-lg btn-block" id="start">开始考试</button>
+		</div>
+	</div>
+</div>
+</body>
+</html>

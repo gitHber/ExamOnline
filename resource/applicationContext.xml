@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.2.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+http://www.springframework.org/schema/websocket
+http://www.springframework.org/schema/websocket/spring-websocket-4.2.xsd ">
+	<!-- 扫描包，使用注解 -->
+	<context:component-scan base-package="com.likun.service,com.likun.dao" />
+	<!-- 读取外部文件 -->
+	<context:property-placeholder location="classpath:db.properties" />
+	<!-- 连接数据的字段值 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${user}" />
+		<property name="password" value="${password}" />
+		<property name="driverClass" value="${driver}" />
+		<property name="jdbcUrl" value="${url}" />
+	</bean>
+	<!-- factory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath:mapper/*.xml" />
+	</bean>
+	<!-- sqlSession -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	<!-- 事务管理 -->
+	<bean
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		id="transactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 文件上传 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760" />  		<!-- 文件大小限制 -->
+		<property name="defaultEncoding" value="UTF-8" />  			<!-- 解决中文乱码 -->
+		<property name="uploadTempDir" value="upload/temp" />       <!-- 临时文件夹 -->
+	</bean>
+</beans>

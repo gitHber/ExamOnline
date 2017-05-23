@@ -1,0 +1,90 @@
+body{
+    background-image: url(../img/bg_line.png);
+    background-repeat: repeat;
+    margin:0;
+     padding:0;
+}
+/*信息*/
+.info{
+	text-align: right;
+	background: #4D4D4D;
+	color: white;
+}
+.info a{
+	color: white;
+}
+.info a:hover{
+	color:white;
+}
+.info a:visited{
+	color:white;
+}
+/*头部*/
+.header{
+	background:#2B79AD;
+}
+.header .input-group{
+	width:100px;
+	margin-left: 900px;
+}
+.header .input-group button.dropdown-toggle{
+	background: #256894;
+	color:white;
+	border:1px solid #205980;
+}
+.header .input-group ul.dropdown-menu{
+	background: #256894;
+}
+.header .input-group ul.dropdown-menu li a{
+	color: white;
+}
+.header .input-group ul.dropdown-menu li a:hover{
+	background: #205980;
+}
+.header .input-group input.form-control{
+	margin-top: 10px;
+	width:120px;
+}
+.label{
+	position: absolute;
+}
+.label li{
+	position: absolute;
+	left:730px;
+	top:-43px;
+	margin-left: 10px;
+}
+.label li a{
+	color: white;
+	font-size: 1.4em;
+}
+.label li a:hover{
+	color: #256894;
+}
+/*公告*/
+.announcement{
+	height: 30px;
+	font-size: 1.2em;
+	background: #FCF8E3;
+	vertical-align: center;
+	padding-top:2px;
+	border:2px solid #FAEBCC;
+}
+/*个人信息*/
+.personal{
+	background: white;
+}
+.personal .list-group a{
+	color:black;
+	text-decoration: none;
+}
+.personal .list-group li:hover{
+	background: #F0F9FF;
+}
+.personal dd a{
+	text-decoration: none;
+	color: black;
+}
+.personal dd span{
+	color:#B8AAC5;
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.likun.dao.StudentDao">
+	<!--学生登录 -->
+	<select id="getStudentById" parameterType="String" resultType="Student">
+		select * from student where no=#{studentno}
+	</select>
+	<!-- 得到一个班的学生数量 -->
+	<select id="getStudentNumByGrade" parameterType="String"
+		resultType="int">
+		select count(1) from student where grade=#{grade}
+	</select>
+	<!-- 添加学生 -->
+	<insert id="addStudent" parameterType="Student">
+		insert into
+		student(no,name,grade,password,email)
+		VALUES(#{no},#{name},#{grade},#{password},#{email})
+	</insert>
+	<!-- 删除学生 -->
+	<delete id="deleteStudent" parameterType="int">
+		delete from student
+		where id=#{id}
+	</delete>
+	<!-- 修改学生信息 -->
+	<update id="upStudent" parameterType="Student">
+		update student set
+		name=#{name},password=#{password},email=#{email}
+		where id=#{id}
+	</update>
+	<!-- 根据条件查询要显示的学生(分页) -->
+	<select id="searchStudent" parameterType="map" resultType="Student">
+		select * from student
+		<where>
+			<foreach collection="aa.keys" index="key" item="item"
+				separator="and">
+				<if test="item!='pageSize' and item!='pageIndex'">
+					${item}=#{aa[${item}]}
+				</if>
+			</foreach>
+		</where>
+		<if test="pageIndex!=null and pageSize!=null">
+			limit #{aa[pageIndex]},#{aa[pageSize]}
+		</if>
+	</select>
+	<!-- 符合条件的数据一共有多少条 -->
+	<select id="searchCount" resultType="int" parameterType="map">
+		select count(*) from student
+		<where>
+			<foreach collection="aa.keys" index="index" item="item"
+				separator="and">
+				${item}=#{aa[${item}]}
+			</foreach>
+		</where>
+	</select>
+</mapper>

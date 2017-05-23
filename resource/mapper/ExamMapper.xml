@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.likun.dao.ExamDao">
+	<!-- 根据考试id删除考试 -->
+	<delete id="deleteExamById" parameterType="int">
+		delete from
+		exam where
+		id=#{id}
+	</delete>
+	<!-- 更新考试信息 -->
+	<update id="updateExamById" parameterType="Exam">
+		update exam
+		set
+		name=#{name},pageId=#{pageId},time=#{time},grade=#{grade}
+		where
+		id=#{id}
+	</update>
+	<!-- 更新考试状态 -->
+	<update id="updateExamStatus" parameterType="map">
+		update exam
+		set
+		flag=#{flag}
+		where id=#{id}
+	</update>
+	<!-- 新建考试并将自增的id存入参数对象 -->
+	<insert id="addExam" useGeneratedKeys="true" keyProperty="id"
+		parameterType="Exam">
+		INSERT INTO exam (
+		name,
+		pageId,
+		time,
+		grade,
+		teacherId
+		)
+		VALUES
+		(#{name},
+		#{pageId},
+		#{time},
+		#{grade},
+		#{teacherId})
+	</insert>
+	<!-- 根据考试id得到考试信息 -->
+	<select id="getExamById" parameterType="int" resultType="Exam">
+		select *
+		from exam where id=#{id}
+	</select>
+	<!-- 根据条件查询要显示的数据 (分页) -->
+	<select id="searchExam" parameterType="map" resultType="Exam">
+		select * from exam
+		<where>
+			<foreach collection="aa.keys" index="key" item="item"
+				separator="and">
+				<if test="item!='pageSize' and item!='pageIndex'">
+					${item}=#{aa[${item}]}
+				</if>
+			</foreach>
+		</where>
+		<if test="pageIndex!=null and pageSize!=null">
+		limit #{aa[pageIndex]},#{aa[pageSize]}
+		</if>
+	</select>
+	<!-- 符合条件的数据一共有多少条 -->
+	<select id="searchCount" resultType="int" parameterType="map">
+		select count(*) from exam
+		<where>
+			<foreach collection="aa.keys" index="index" item="item"
+				separator="and">
+				${item}=#{aa[${item}]}
+			</foreach>
+		</where>
+	</select>
+	<!-- 获取某个学生的考试 -->
+	<select id="getStudentExam" parameterType="map" resultType="Exam">
+		select * from exam where flag=#{flag} and grade =(SELECT grade from
+		student WHERE id=#{id}) LIMIT #{itemIndex},#{pageSize}
+	</select>
+	<!-- 获取某个学生的考试成绩 -->
+	<select id="getStudentExamScore" parameterType="map" resultType="ExamScore">
+		select exam.*,student_score.score from 
+		student_score,exam where stuId=#{id} and student_score.examId=exam.id LIMIT #{itemIndex},#{pageSize}
+	</select>
+	<!-- 获取某个学生的考试成绩数量 -->
+	<select id="getStudentExamScoreNum" parameterType="map" resultType="int">
+		select count(1) from 
+		student_score,exam where stuId=#{id} and student_score.examId=exam.id LIMIT #{itemIndex},#{pageSize}
+	</select>
+	<!-- 获取某个学生的考试数量 -->
+	<select id="getStudentExamNum" parameterType="map" resultType="int">
+		select count(1) from exam where flag=#{flag} and grade =(SELECT grade from student
+		WHERE id=#{id})
+	</select>
+</mapper>

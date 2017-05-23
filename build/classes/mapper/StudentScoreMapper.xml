@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.likun.dao.StudentScoreDao">
+	<!-- 添加学生考试成绩-->
+	<insert id="addStudentScore" parameterType="StudentScore">
+		insert into
+		student_score(stuId,examId)
+		VALUES(#{stuId},#{examId})
+	</insert>
+	<!-- 填写学生成绩 -->
+	<update id="setScore" parameterType="StudentScore">
+		update student_score set 
+		score=(SELECT sum(cent) from student_exam where stuId=#{stuId} and examId=#{examId})
+		 where stuId=#{stuId}
+	</update>
+	<!-- 获取未评分的学生 -->
+	<select id="getAllStudentWithNoCent" parameterType="int" resultType="Integer">
+		select stuId from student_score where examId=#{examId} and cent is null
+	</select>
+	<!-- 得到某个班级某场考试的所有学生成绩 -->
+	<select id="getScoreByGradeAndExam"  parameterType="map" resultType="StudentScore">
+		select * from student_score where examId=#{examId} and stuId in(select id from student where grade=#{grade})
+	</select>
+	<!-- 得到某个班级某场考试的所有学生成绩数量 -->
+	<select id="getScoreCountByGradeAndExam" parameterType="map" resultType="int">
+		select count(1) from student_score where examId=#{examId} and stuId in(select id from student where grade=#{grade})
+	</select>
+</mapper>

@@ -1,0 +1,49 @@
+/*考试练习信息*/
+.examtitle li{
+	border-top: 3px solid transparent;
+	border-bottom: 3px solid #CCCCCC;
+}
+.examtitle li a{
+	color: black;
+}
+.myChoice{
+	border-top: 3px solid red;
+	border-top: 3px solid #CCCCCC;
+	border-bottom: 3px solid red;
+}
+/*每场考试的信息*/
+.examInfo{
+	background:white;
+}
+.examInfo b{
+	color: #B3B3B3;
+	font-size: 1.5em;
+}
+
+.examInfo ul{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+.examInfo .examAttr{
+	color: #B3B3B3;
+}
+/*每场考试的信息*/
+.scoreInfo{
+	background:white;
+}
+.scoreInfo b{
+	color: #B3B3B3;
+	font-size: 1.5em;
+}
+.scoreInfo button{
+	margin-left: 450px;
+}
+.scoreInfo ul{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+.scoreInfo .examAttr{
+	color: #B3B3B3;
+}

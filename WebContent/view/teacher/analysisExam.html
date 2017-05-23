@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>试卷</title>
+	<script src="../js/tools/jquery-3.2.1.min.js"></script>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- 可选的Bootstrap主题文件（一般不使用） -->
+	<script src="../bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
+	
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../css/teacher/index.css" type="text/css" />
+	<link rel="stylesheet" href="../css/teacher/exam.css" type="text/css" />
+	<script type="text/javascript" src="../js/tools/tools.js"></script>
+	<!-- ECharts单文件引入 -->
+	<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+	<script type="text/javascript" src="../js/teacher/analysisExam.js"></script>
+</head>
+<body>
+	<div class="container">
+		<!--头信息-->
+		<div class="row clearfix" style="background: #4D4D4D;">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="row clearfix">
+							<div class="col-md-12 column info">
+								<strong>当前用户：</strong>
+								<a href="MyInfo.html" target="lemon" class="name">李坤</a>
+								<a href="#">短消息(<span>0</span>)</a>
+								<a href="#">公告(<span>0</span>)</a>
+								<a href="#">修改密码</a>
+								<a href="#">注销</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索框 导航之类 -->
+		<div class="row clearfix header">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="row clearfix">
+							<div class="col-md-12 column">
+								<div class="col-lg-3">
+									<a href="index.html"><img src="../img/logo_exam.png"/></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<!-- 公告 -->
+				<div class="row clearfix announcement">
+					<div class="col-md-12 column">
+						<span class="glyphicon glyphicon-comment" style="color: #8A6D3B; font-size: 14px;"/>　<strong style="color:#976D3B;">公告：</strong><a href="">首页置顶公告</a>
+					</div>
+				</div>
+				<br>
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<form action="javascript:void(0)" id="searchCondition">
+							<!-- 搜索条件 -->
+							<table>
+								<font style="font-size: 2em;">考试检索</font>|
+								<tr>
+									<td><label for="">考试时间：</label></td>
+									<td>
+										<input type="datetime-local" name="time">
+									</td>
+									<td>　　　　</td>
+									<td><label for="">考试班级：</label></td>
+									<td>
+										<select class="form-control  input-sm" name="grade" id="class">
+											<option value="">请选择</option>
+
+										</select>
+									</td>
+									<td>　　　　</td>
+
+									<td><button class="btn btn-primary btn-sm" id="search">检索</button></td>
+									<td>　　　　</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+					<div class="col-md-12 column">
+						<table class="table table-hover" id="examtable">
+							<font style="font-size: 2em;">阅卷评分</font>|
+							<!-- 按钮触发模态框 -->
+							<thead>
+								<tr>
+									<th>编号</th>
+									<th>考试标题</th>
+									<th>考试时间</th>
+									<th>考试班级</th>
+									<th>考试状态</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="exam">
+									<td class="id">1</td>
+									<td class="name">数据库五章测试</td>
+									<td class="time">2017/02/04 10:00</td>
+									<td class="grade">13070641</td>
+									<td class="flag">未考</td>
+									<td><button type="button" class="btn btn-info btn-sm analysis">成绩分析</button></td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="pagination" style="margin-left: 30%">
+							<li><a href="javascript:void()" id="firstPage">首页</a></li>
+							<li><a href="javascript:void()" id="beforPage">&lt;</a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="javascript:void()" id="nextPage">&gt;</a></li>
+							<li><a href="javascript:void()" id="lastPage">尾页</a></li>
+							<li><input type="number" value=1 style="width: 40px;" id="pageNum"></li>
+							<li><button class="btn btn-primary btn-sm" id="turn">跳转</button></li>
+							<li>总页数:<b id="pageCount"></b></li>
+							<li>共<b id="itemCount"></b>条</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 显示试卷信息 -->
+	<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">考试信息</h4>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<div class="row clearfix">
+							<div class="col-md-3 column">
+								<table>
+									<tbody>
+										<tr hidden="hidden">
+											<td>考试id：</td>
+											<td id="examId"></td>
+										</tr>
+										<tr>
+											<td>考试名称：</td>
+											<td id="name"></td>
+										</tr>
+										<tr>
+											<td>所用试卷：</td>
+											<td id="pageName"></td>
+										</tr>
+										<tr>
+											<td>考试时间：</td>
+											<td id="time"></td>
+										</tr>
+										<tr>
+											<td>考试班级：</td>
+											<td id="grade"></td>
+										</tr>
+										<tr>
+											<td>考试状态：</td>
+											<td id="flag"></td>
+										</tr>
+									</tbody>
+								</table>
+								<hr>
+								<table>
+									<tr>
+										<td>应参加考试人数：</td>
+										<td id="studentNum">0</td>
+									</tr>
+									<tr>
+										<td>实际参加考试人数：</td>
+										<td id="scoreNum">0</td>
+									</tr>
+								</table>
+							</div>
+							<div class="col-md-9 column">
+								<div id="echarsView" style="height:300px;width:500px;"></div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
+</body>
+</html>

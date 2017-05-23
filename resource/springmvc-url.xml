@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.2.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+http://www.springframework.org/schema/websocket
+http://www.springframework.org/schema/websocket/spring-websocket-4.2.xsd ">
+	<!-- 包扫描 -->
+	<context:component-scan base-package="com.likun"></context:component-scan>
+	<!-- 开启SpringMVC注解 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<!-- 配置视图 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		id="internalResourceViewResolver">
+		<!-- 前缀 当我们返回aa //WEB-INF/html/+aa+.html -->
+		<property name="prefix" value="/" />
+		<!-- 后缀 -->
+		<property name="suffix" value=".html" />
+	</bean>
+<!-- 	<mvc:interceptors> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			默认拦截的连接 -->
+<!-- 			<mvc:mapping path="/*" /> -->
+<!-- 			不拦截的连接 -->
+<!-- 			<mvc:exclude-mapping path="/Project2/teaching/login.html" /> -->
+<!-- 			<bean class="com.likun.interceptor.LoginInterceptor"></bean> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 	</mvc:interceptors> -->
+</beans>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.likun.dao.PageDao">
+	<!-- 根据试卷id删除试卷 -->
+	<delete id="deletePageById" parameterType="int">
+		delete from
+		page where
+		id=#{id}
+	</delete>
+	<!-- 查询试卷当前总分数 -->
+	<select id="getCurrCentByPageId" parameterType="String"
+		resultType="int">
+		select SUM(cent) from(SELECT(SELECT cent FROM question_type
+		qt WHERE qt.id =
+		q.type) cent
+		FROM question q WHERE q.id IN (SELECT
+		questionId FROM page_question WHERE
+		pageId = #{pageId})) cents;
+	</select>
+	<!-- 更新试卷 -->
+	<update id="updatePageById" parameterType="Page">
+		update page
+		set
+		name=#{name},courseId=#{courseId},total_cent=#{total_cent},diff=#{diff}
+		,chapter_start=#{chapter_start},chapter_end=#{chapter_end},crea_time=#{crea_time},upda_time=#{upda_time},teacherId=#{teacherId},
+		ans_time=#{ans_time},page_type=#{page_type},assembly_type=#{assembly_type}
+		where id=#{id}
+	</update>
+	<!-- 插入试卷并将自增的id存入参数对象 -->
+	<insert id="addPage" useGeneratedKeys="true" keyProperty="id"
+		parameterType="Page">
+		INSERT INTO page (
+		name,
+		courseId,
+		total_cent,
+		diff,
+		chapter_start,
+		chapter_end,
+		crea_time,
+		upda_time,
+		teacherId,
+		ans_time,
+		page_type,
+		assembly_type
+		)
+		VALUES
+		(#{name},
+		#{courseId},
+		#{total_cent},
+		#{diff},
+		#{chapter_start},
+		#{chapter_end},
+		#{crea_time},
+		#{upda_time},
+		#{teacherId},
+		#{ans_time},
+		#{page_type},
+		#{assembly_type})
+	</insert>
+	<!-- 根据试卷id得到试卷 -->
+	<select id="getPageById" parameterType="int" resultType="Page">
+		select *
+		from page where id=#{id}
+	</select>
+	<!-- 根据条件查询要显示的数据 (分页) -->
+	<select id="searchPage" parameterType="map" resultType="Page">
+		select * from page
+		<where>
+			<foreach collection="aa.keys" index="key" item="item"
+				separator="and">
+				<if test="item!='pageSize' and item!='pageIndex'">
+					${item}=#{aa[${item}]}
+				</if>
+			</foreach>
+		</where>
+		limit #{aa[pageIndex]},#{aa[pageSize]}
+	</select>
+	<!-- 符合条件的数据一共有多少条 -->
+	<select id="searchCount" resultType="int" parameterType="map">
+		select count(*) from page
+		<where>
+			<foreach collection="aa.keys" index="index" item="item"
+				separator="and">
+				${item}=#{aa[${item}]}
+			</foreach>
+		</where>
+	</select>
+	<!-- 得到所有的试卷 -->
+	<select id="getAllPage" resultType="Page">
+		select * from page
+	</select>
+</mapper>

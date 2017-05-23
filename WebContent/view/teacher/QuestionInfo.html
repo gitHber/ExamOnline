@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>试题信息</title>
+	<script src="../js/tools/jquery-3.2.1.min.js"></script>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- 可选的Bootstrap主题文件（一般不使用） -->
+	<script src="../bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
+	
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../css/teacher/index.css" type="text/css" />
+	<link rel="stylesheet" href="../css/teacher/QuestionInfo.css" type="text/css" />
+	<script src="../js/tools/tools.js"></script>
+	<script type="text/javascript" src="../js/teacher/QuestionInfo.js"></script>
+</head>
+<body>
+	<div class="container">
+		<!--头信息-->
+		<div class="row clearfix" style="background: #4D4D4D;">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="row clearfix">
+							<div class="col-md-12 column info">
+								<strong>当前用户：</strong>
+								<a href="MyInfo.html" target="lemon">李坤</a>
+								<a href="#">短消息(<span>0</span>)</a>
+								<a href="#">公告(<span>0</span>)</a>
+								<a href="#">修改密码</a>
+								<a href="#">注销</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索框 导航之类 -->
+		<div class="row clearfix header">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="row clearfix">
+							<div class="col-md-12 column">
+								<div class="col-lg-3">
+									<a href="index.html"><img src="../img/logo_exam.png"/></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<!-- 公告 -->
+				<div class="row clearfix announcement">
+					<div class="col-md-12 column">
+						<span class="glyphicon glyphicon-comment" style="color: #8A6D3B; font-size: 14px;"/>　<strong style="color:#976D3B;">公告：</strong><a href="">首页置顶公告</a>
+					</div>
+				</div>
+				<br>
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<form action="javascript:void()" id="questionInfo">
+							<table class="table">
+								<font style="font-size: 2em;">试题属性</font>
+								<tr>
+									<td>
+										<label for="">类型：</label>
+										<select name="type">
+											
+										</select>
+										<label for="">　　　难度：</label>
+										<select name="diff">
+											<option value=1>简单</option>
+											<option value=2>一般</option>
+											<option value=3>困难</option>
+										</select>
+										<label for="">　　　课程：</label>
+										<select name="courseId">
+											
+										</select>
+										<label for="">　　　章节：</label>
+										<select name="chapter">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<font style="font-size: 1.5em;">试题标题</font>|
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<textarea class="form-control" rows="2" id="title"></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<font style="font-size: 1.5em;">试题选项<small>(选中的为答案)</small></font>|
+									</td>
+								</tr>
+								<tr class="single" style="display: table-row;">
+									<td>
+										<!-- 四单选选项 -->
+										<div class="radio">
+											<label>
+												<input type="radio" name="optionsRadios" value="A">A.
+											</label>
+											<textarea class="form-control" rows="3" id="singleOption1"></textarea>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="optionsRadios" value="B">B.
+											</label>
+											<textarea class="form-control" rows="3" id="singleOption2"></textarea>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="optionsRadios" value="C">C.
+											</label>
+											<textarea class="form-control" rows="3" id="singleOption3"></textarea>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="optionsRadios" value="D">D.
+											</label>
+											<textarea class="form-control" rows="3" id="singleOption4"></textarea>
+										</div>
+									</td>
+								</tr>
+								<tr class="multiple" style="display: none;">
+									<td>
+										<!-- 四多选选项 -->
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" value="A">A.
+											</label>
+											<textarea class="form-control" rows="3" id="multipleOption1"></textarea>
+										</div>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" value="B">B.
+											</label>
+											<textarea class="form-control" rows="3" id="multipleOption2"></textarea>
+										</div>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" value="C">C.
+											</label>
+											<textarea class="form-control" rows="3" id="multipleOption3"></textarea>
+										</div>
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" value="D">D.
+											</label>
+											<textarea class="form-control" rows="3" id="multipleOption4"></textarea>
+										</div>
+									</td>
+								</tr>
+								<tr class="blank" style="display: none;">
+									<td>
+										<textarea class="form-control" rows="10" id="answer"></textarea>
+									</td>
+								</tr>
+							</table>
+							<button type="button" class="btn btn-primary btn-lg btn-block" id="submit">提交</button>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
