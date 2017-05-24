@@ -1,2 +1,0 @@
-# ExamOnline
-My Colleage Project
