@@ -26,15 +26,20 @@ function wrong(id){
 //登录
 jQuery(document).ready(function($) {
     $("#login").click(function(event) {
-        $.post('/ExamOnline/studentLogin.do', {"studentno":$("#studentno").val(),"password":$("#password").val()}, function(data) {
-            console.log(data);
-            if(data.code==200){
-                location.href="index.html";
-            }else{
-                $("#info").text('用户名或密码错误');
-                $("#info").show();
+        $.ajax({
+            url: '/ExamOnline/studentLogin.do',
+            type: 'post',
+            dataType: 'json',
+            data: {"studentno":$("#studentno").val(),"password":$("#password").val()},
+            success:function(data){
+                if(data.code==200){
+                    location.href="index.html";
+                }else{
+                    $("#info").text('用户名或密码错误');
+                    $("#info").show();
+                }
             }
-        },'json');
+        });
     });
 });
 jQuery(document).ready(function($) {

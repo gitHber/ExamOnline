@@ -38,6 +38,6 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   <welcome-file-list>
-    <welcome-file>view/student/student-login.html</welcome-file>
+    <welcome-file>welcome.html</welcome-file>
   </welcome-file-list>
 </web-app>

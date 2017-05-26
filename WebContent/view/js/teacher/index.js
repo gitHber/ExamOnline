@@ -9,11 +9,19 @@ jQuery(document).ready(function($) {
 });
 jQuery(document).ready(function($) {
 	//加载用户信息
-	$.post('/ExamOnline/getTeacherInfoFromSession.do', function(data) {
-		console.log(data);
-		if(data.code==200){
-			var teacher=data.teacher;
-			$(".name").text(teacher.name);
+	$.ajax({
+        url: '/ExamOnline/getTeacherInfoFromSession.do',
+        type: 'post',
+        dataType: 'json',
+        success:function(data){
+        	if(data.code==200){
+    			var teacher=data.teacher;
+    			$(".name").text(teacher.name);
+    		}
+        },
+		error:function(){
+			location.href="teacher-login.html";
 		}
-	},'json');
+    });
+	
 });

@@ -43,7 +43,7 @@ jQuery(document).ready(function($) {
 		if(data.code==200){
 			var student=data.student;
 			$(".name").text(student.name);
-			$("#headImg").attr("src","student.img");
+			$("#headImg").attr("src",student.img);
 		}
 	},'json');
 	// 加载课程
@@ -62,6 +62,9 @@ jQuery(document).ready(function($) {
 					$("[name='courseId']").append(option);
 				});
 			}
+		},
+		error:function(){
+			location.href="../student/student-login.html";
 		}
 	});
 			// 克隆模板

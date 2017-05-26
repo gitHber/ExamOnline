@@ -125,6 +125,9 @@ jQuery(document).ready(function($) {
 				alert(data.msg);
 				location.href="index.html"
 			}
+		},
+		error:function(){
+			location.href="../student/student-login.html";
 		}
 	});
 			// // 加载本试卷单选题

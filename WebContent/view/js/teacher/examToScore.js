@@ -63,6 +63,9 @@ jQuery(document).ready(
 							$("#upExam [name='grade']").append(option.clone());
 						});
 					}
+				},
+				error:function(){
+					location.href="teacher-login.html";
 				}
 			});
 			//加载所有试卷

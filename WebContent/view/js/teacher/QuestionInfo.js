@@ -17,6 +17,9 @@ jQuery(document).ready(
 							$("[name='type']").append(option);
 						});
 					}
+				},
+				error:function(){
+					location.href="teacher-login.html";
 				}
 			});
 			// 加载课程

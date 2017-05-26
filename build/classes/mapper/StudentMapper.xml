@@ -28,6 +28,12 @@
 		name=#{name},password=#{password},email=#{email}
 		where id=#{id}
 	</update>
+	<!-- 上传用户头像 -->
+	<update id="upUserHead" parameterType="String">
+		update student set
+		img=#{imgSrc}
+		where id=#{id}
+	</update>
 	<!-- 根据条件查询要显示的学生(分页) -->
 	<select id="searchStudent" parameterType="map" resultType="Student">
 		select * from student

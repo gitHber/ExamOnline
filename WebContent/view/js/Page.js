@@ -50,6 +50,9 @@ jQuery(document).ready(function($) {
 				pageId=examPage.pageId;
 			}
 			
+		},
+		error:function(){
+			location.href="../student/student-login.html";
 		}
 	});
 	//计时

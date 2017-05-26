@@ -34,6 +34,9 @@ jQuery(document).ready(
 						var teacher = data.teacher;
 						$(".name").text(teacher.name);
 					}
+				},
+				error:function(){
+					location.href="teacher-login.html";
 				}
 			});
 			// 获取试卷信息

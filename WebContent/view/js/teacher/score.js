@@ -44,6 +44,9 @@ jQuery(document).ready(function($) {
 				var teacher = data.teacher;
 				$(".name").text(teacher.name);
 			}
+		},
+		error:function(){
+			location.href="teacher-login.html";
 		}
 	});
 	//获得所有未评分的学生

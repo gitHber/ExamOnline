@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>首页</title>
 <link rel="stylesheet" href="../css/index.css" type="text/css" />
-<script src="../js/tools/jquery-3.2.1.min.js"></script>
+<script src="../js/tools/jquery-latest.js"></script>
 <script src="../js/tools/tools.js"></script>
 <link rel="stylesheet" href="../css/ExamPractice.css">
 <!-- 新 Bootstrap 核心 CSS 文件 -->
@@ -294,7 +294,17 @@
 			$('.export').click(function() {
 				var imageData = $('.image-editor').cropit('export');
 				$("#headImg").attr('src', imageData);
-				$('#myModal').modal('hide')
+				$('#myModal').modal('hide');
+				$.ajax({  
+			          url: '/ExamOnline/file.do' ,  
+			          type: 'POST',  
+			          data: {"data":imageData}, 
+			          dataType:"json", 
+			          async: false,  
+			          success: function (data) {
+			        	  alert(data.msg);
+			          } 
+			      });
 			});
 		});
 	</script>

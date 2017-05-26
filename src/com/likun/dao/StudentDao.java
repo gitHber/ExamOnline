@@ -73,6 +73,13 @@ public class StudentDao {
 		return flag;
 	}
 	/**
+	 * 上传用户头像
+	 */
+	public int upUserHead(Map map){
+		int update = sqlSessionTemplate.update("com.likun.dao.StudentDao.upUserHead",map);
+		return update;
+	}
+	/**
 	 * 根据条件查询要显示的数据 (分页)
 	 */
 	public List<Student> searchStudent(Map<String, Object> map) {

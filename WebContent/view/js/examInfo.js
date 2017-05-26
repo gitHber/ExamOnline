@@ -43,6 +43,9 @@ jQuery(document).ready(function($) {
 				$("#grade").text(examPage.grade);
 			}
 			
+		},
+		error:function(){
+			location.href="../student/student-login.html";
 		}
 	});
 	

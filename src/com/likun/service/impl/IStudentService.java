@@ -70,6 +70,12 @@ public class IStudentService implements StudentService {
 		return studentDao.upStudent(student);
 	}
 	/**
+	 * 上传用户头像
+	 */
+	public int upUserHead(Map map){
+		return studentDao.upUserHead(map);
+	}
+	/**
 	 * 根据条件查询要显示的数据 (分页)
 	 */
 	public List<Student> searchStudent(Map<String,Object> map){

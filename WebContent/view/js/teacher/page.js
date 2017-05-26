@@ -43,6 +43,9 @@ jQuery(document).ready(function($) {
 				var teacher = data.teacher;
 				$(".name").text(teacher.name);
 			}
+		},
+		error:function(){
+			location.href="teacher-login.html";
 		}
 	});
 			// 加载课程
